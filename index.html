@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="shortcut icon" href="app/assets/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="app/assets/images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="app/assets/styles/app.css">
+        <script src="./node_modules/whatwg-fetch/fetch.js"></script>
+        <script src="./node_modules/proxy-polyfill/proxy.min.js"></script>
+        <script src="./node_modules/es6-promise-polyfill/promise.js"></script>
+        <script src="./node_modules/requirejs/require.js"></script>
+        <title>SMN</title>
+    </head>
+    <body>
+        <div id="wrapper">
+            <header>
+                SMN - Super Mega News
+                <sup>(supported by  <a href="https://newsapi.org">NewsApi</a>)</sup>
+            </header>
+            <div id="articles">
+                <h3>latest news ...</h3>
+            </div>
+        </div>
+        <footer>Powered by DRem (Andrei Hrakovich)</footer>
+    </body>
+    <script type="text/javascript">
+        window.onload = function() {
+            require(['./lib/newsApplication'], function(appClass) {
+                var app = new appClass.NewsApplication({
+                    newsUrl: 'https://newsapi.org/v1/articles?source=bbc-news&apiKey=e4f61131ae2a4c888846c71d56ebb5c0',
+                    newsElementId: 'articles'
+                });
+                app.run();
+            });
+        }
+    </script>
+</html>
